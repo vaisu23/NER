@@ -91,7 +91,7 @@ python train.py
 
 The fine-tuned model is available on Hugging Face:
 
-👉 **[Hugging Face Model Link](YOUR_HF_LINK_HERE)**
+👉 **[Hugging Face Model Link](https://huggingface.co/Vaisu23/ner-qwen_modelE)**
 
 ---
 
@@ -99,7 +99,7 @@ The fine-tuned model is available on Hugging Face:
 
 You can try the model live here:
 
-👉 **[Live Demo](YOUR_STREAMLIT_LINK_HERE)**
+👉 **[Live Demo](https://pinzbaum85sfz5fhpkhywq.streamlit.app/)**
 
 ---
 
