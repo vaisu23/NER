@@ -91,7 +91,7 @@ python train.py
 
 The fine-tuned model is available on Hugging Face:
 
-👉 **[Hugging Face Model Link](https://huggingface.co/Vaisu23/ner-qwen_modelE)**
+👉 **[Hugging Face Model Link](https://huggingface.co/Vaisu23/ner-qwen_model)**
 
 ---
 
