@@ -1,0 +1,64 @@
+# -------------------------
+combine.py
+cleaning.py
+# Python virtual environment
+
+# -------------------------
+
+venv/
+.env/
+**pycache**/
+*.pyc
+
+# -------------------------
+
+# Jupyter notebooks
+
+# -------------------------
+
+.ipynb_checkpoints/
+*.ipynb
+
+# -------------------------
+
+# Unsloth / training cache
+
+# -------------------------
+
+unsloth_compiled_cache/
+
+# -------------------------
+
+# Model outputs / checkpoints
+
+# -------------------------
+
+qwen_entity_extractor_with_500/
+outputs/
+lora_model/
+
+# -------------------------
+
+# Dataset files (large JSONL)
+
+# -------------------------
+
+*.jsonl
+
+# -------------------------
+
+# Misc generated files
+
+# -------------------------
+
+*.log
+*.tmp
+
+# -------------------------
+
+# OS / system files
+
+# -------------------------
+
+.DS_Store
+Thumbs.db
