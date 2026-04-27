@@ -1,32 +1,150 @@
-# CoT Fine-Tuning Project
+# 🧠 Lightweight NER Fine-Tuning with Qwen (0.5B)
 
-This project fine-tunes a small language model (Qwen2.5-0.5B-Instruct) on the GSM8K dataset for Chain of Thought (CoT) reasoning using Unsloth and QLoRA.
+This project fine-tunes a **small base language model** for **Named Entity Recognition (NER)** using structured JSON outputs.
 
-## Setup
+Instead of using a large instruct model, this project focuses on **efficiency and accessibility** by training a **0.5B parameter base model** that can run on low-resource machines.
 
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+---
 
-2. Run the training script:
-   ```bash
-   python train.py
-   ```
+## 🚀 Overview
 
-## What it does
+* Base Model: Qwen 2.5 - 0.5B (Base, not Instruct)
+* Fine-tuning: LoRA + QLoRA via Unsloth
+* Task: Convert raw text → structured JSON entities
+* Output Format: `{ "PER": [...], "LOC": [...], "ORG": [...], ... }`
 
-- Loads the Qwen2.5-0.5B-Instruct model in 4-bit quantization.
-- Applies LoRA for efficient fine-tuning.
-- Trains on GSM8K dataset formatted for CoT (question + step-by-step answer).
-- Saves the LoRA adapters and merged model.
+---
 
-## Hardware Requirements
+## 📦 What this project does
 
-- 4GB VRAM GPU (e.g., RTX 3050 or better).
-- Uses QLoRA to keep memory usage low.
+* Fine-tunes a **small base LLM** for NER tasks
+* Uses:
 
-## Notes
+  * CoNLL-2003 dataset
+  * Synthetic dataset generated locally using Ollama
+* Trains using **Supervised Fine-Tuning (SFT)**
+* Outputs **structured JSON entities** instead of plain text
 
-- Training is set to 60 steps for demo. Increase `max_steps` for full training.
-- The model learns to generate step-by-step reasoning for math problems.
+---
+
+## 🧪 Example
+
+### Input
+
+```text
+He ate 3 eggs in Paris
+```
+
+### Output
+
+```json
+{
+  "PER": [],
+  "LOC": ["Paris"],
+  "ORG": [],
+  "MISC": [],
+  "AMOUNT": ["3 eggs"]
+}
+```
+
+---
+
+## ⚙️ Setup
+
+### 1. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Train the model
+
+```bash
+python train.py
+```
+
+---
+
+## 🏗️ Training Details
+
+* Model loaded in **4-bit quantization**
+* LoRA applied for efficient fine-tuning
+* Uses custom dataset:
+
+  * CoNLL NER data
+  * Synthetic data for better generalization
+* Trainer: `SFTTrainer` from TRL
+
+---
+
+## 💻 Hardware Requirements
+
+* Works on **low-end GPUs (4GB VRAM)**
+* Can also run on modest systems due to:
+
+  * QLoRA
+  * Small model size (0.5B)
+
+---
+
+## 🤗 Model Availability
+
+The fine-tuned model is available on Hugging Face:
+
+👉 **[Hugging Face Model Link](YOUR_HF_LINK_HERE)**
+
+---
+
+## 🌐 Demo (Streamlit App)
+
+You can try the model live here:
+
+👉 **[Live Demo](YOUR_STREAMLIT_LINK_HERE)**
+
+---
+
+## 📁 Project Structure
+
+```text
+.
+├── train.py
+├── connell_dataset.py
+├── synthetic_data_gen_2.py
+├── requirements.txt
+├── README.md
+```
+
+---
+
+## 🧠 Key Idea
+
+Instead of relying on large instruction-tuned models, this project shows that:
+
+> A **small base model + good data + efficient fine-tuning**
+> can perform structured NER tasks effectively.
+
+---
+
+## ⚠️ Notes
+
+* Model performance depends heavily on dataset quality
+* Synthetic data helps improve generalization
+* Increase training steps for better results
+
+---
+
+## 📌 Future Improvements
+
+* Add more entity types (dates, currency, etc.)
+* Improve schema consistency
+* Expand multilingual support
+
+---
+
+## 🙌 Acknowledgements
+
+* Alibaba for Qwen models
+* Hugging Face ecosystem
+* Unsloth for optimization tools
+
+---
