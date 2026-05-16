@@ -6,6 +6,7 @@ cleaning.py
 # -------------------------
 
 venv/
+.env*
 .env/
 **pycache**/
 *.pyc

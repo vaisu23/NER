@@ -1,10 +1,11 @@
 ---
 title: Ner App B
-emoji: 🚀
-colorFrom: blue
-colorTo: pink
-sdk: docker # Or streamlit / gradio depending on what your backend uses
-app_port: 7860
+emoji: 📚
+colorFrom: red
+colorTo: blue
+sdk: docker
 pinned: false
+license: mit
+short_description: hosting the ner app  backend
 ---
-
+Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
