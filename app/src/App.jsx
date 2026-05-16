@@ -8,10 +8,7 @@ export default function NERDemoPage() {
   const [output, setOutput] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const API_URL= import.meta.env.VITE_API_URL 
-
-
- 
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleGenerate = async () => {
     setError("");
@@ -26,14 +23,14 @@ export default function NERDemoPage() {
       setLoading(true);
 
       const response = await fetch(API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        prompt: input,
-      }),
-    });
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prompt: input,
+        }),
+      });
 
       const data = await response.json();
 
@@ -52,7 +49,7 @@ export default function NERDemoPage() {
     return output.map((entity, index) => (
       <div
         key={index}
-        className="bg-white/10 border border-white/10 rounded-xl p-4 mb-3 backdrop-blur-sm"
+        className="bg-white/10 border border-white/10 rounded-xl p-4 mb-3 backdrop-blur-sm w-full max-w-md"
       >
         <div className="flex justify-between items-center">
           <span className="text-cyan-300 font-semibold text-sm">
@@ -94,9 +91,7 @@ export default function NERDemoPage() {
         <div className="grid md:grid-cols-2 gap-6">
           {/* Input Section */}
           <div className="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl shadow-2xl">
-            <h2 className="text-2xl font-semibold mb-4">
-              Input Text
-            </h2>
+            <h2 className="text-2xl font-semibold mb-4">Input Text</h2>
 
             <textarea
               value={input}
@@ -106,9 +101,7 @@ export default function NERDemoPage() {
             />
 
             {error && (
-              <div className="mt-4 text-red-400 text-sm">
-                {error}
-              </div>
+              <div className="mt-4 text-red-400 text-sm">{error}</div>
             )}
 
             <button
@@ -128,37 +121,43 @@ export default function NERDemoPage() {
           </div>
 
           {/* Output Section */}
-          <div className="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl shadow-2xl">
+          <div className="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl shadow-2xl flex flex-col">
             <h2 className="text-2xl font-semibold mb-4">
               Detected Entities
             </h2>
 
-            <div className="h-72 overflow-y-auto pr-2">
+            <div className="h-72 flex-1 flex items-center justify-center">
               {!output && !loading && (
-                <div className="h-full flex items-center justify-center text-gray-500 text-center">
+                <div className="text-gray-500 text-center">
                   Your detected entities will appear here.
                 </div>
               )}
 
               {loading && (
-                <div className="h-full flex flex-col items-center justify-center text-cyan-300">
+                <div className="flex flex-col items-center justify-center text-cyan-300">
                   <Loader2 className="animate-spin mb-3" size={30} />
                   Processing your request...
                 </div>
               )}
 
-              {renderEntities()}
+              {output && (
+                <div className="w-full h-full overflow-y-auto flex flex-col items-center justify-center pr-2">
+                  {renderEntities()}
+                </div>
+              )}
             </div>
 
             {output && (
-              <div className="mt-6 bg-black/30 rounded-2xl p-4 border border-white/10">
-                <p className="text-sm text-gray-400 mb-2">
-                  Raw Model Response
-                </p>
+              <div className="mt-6 bg-black/30 rounded-2xl p-4 border border-white/10 flex items-center justify-center min-h-[220px]">
+                <div className="text-center w-full">
+                  <p className="text-sm text-gray-400 mb-4">
+                    Raw Model Response
+                  </p>
 
-                <pre className="text-xs text-cyan-200 overflow-auto">
-                  {JSON.stringify(output, null, 2)}
-                </pre>
+                  <pre className="text-xs text-cyan-200 whitespace-pre-wrap break-words text-center overflow-auto">
+                    {JSON.stringify(output, null, 2)}
+                  </pre>
+                </div>
               </div>
             )}
           </div>
