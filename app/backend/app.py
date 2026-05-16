@@ -67,7 +67,7 @@ async def generate(request: PromptRequest):
 
     prediction_ids = outputs[0][len(inputs["input_ids"][0]):]
 
-    # Decode only generated response
+    # Decode only generated response and remove the unwanted 
     prediction = tokenizer.decode(
         prediction_ids,
         skip_special_tokens=True
