@@ -136,7 +136,7 @@ export default function NERDemoPage() {
               {loading && (
                 <div className="flex flex-col items-center justify-center text-cyan-300">
                   <Loader2 className="animate-spin mb-3" size={30} />
-                  Processing your request...
+                  Processing your request... First request might take a bit longer as the model is being loaded. Subsequent requests will be faster.
                 </div>
               )}
 
